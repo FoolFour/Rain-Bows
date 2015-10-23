@@ -1,10 +1,10 @@
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Obj/
-UnityGenerated/
-Library/
+/Rain-Bows/Temp/
+/Rain-Bows/Obj/
+/Rain-Bows/UnityGenerated/
+/Rain-Bows/Library/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
