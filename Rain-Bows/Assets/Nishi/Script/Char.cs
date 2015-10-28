@@ -5,13 +5,11 @@ public class Char : MonoBehaviour
 {
 
     [SerializeField]
-    private float dir = 0.1f;
-    [SerializeField]
-    private float speed = 1.0f;
+    private float dir;
     [SerializeField]
     private Transform GroundCheck;
 
-    private Vector3 velocity = new Vector3(1f,0f,0f);
+    private Vector3 velocity = new Vector3(0.1f,0f,0f);
 
     // Use this for initialization
     void Start()
@@ -22,9 +20,10 @@ public class Char : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //velocity = velocity * dir * speed;
         if (IsGround())
         {
-            transform.position += velocity * dir * speed;
+            gameObject.transform.position += velocity * dir;
         }
     }
 
@@ -35,15 +34,6 @@ public class Char : MonoBehaviour
             dir *= -1;
         }
 
-    }
-
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision == null)
-        {
-            velocity = Vector3.zero;
-        }
-        
     }
 
     bool IsGround()
