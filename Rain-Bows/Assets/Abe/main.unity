@@ -159,6 +159,7 @@ GameObject:
   - 199: {fileID: 1015294598}
   - 114: {fileID: 1015294601}
   - 114: {fileID: 1015294602}
+  - 114: {fileID: 1015294603}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -1278,7 +1279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef322cff705d8d4cb67b4572daa3d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isChase: 1
 --- !u!114 &1015294602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1287,7 +1287,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015294597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f852fa219946ad48a23a1efd6d918b9, type: 3}
+  m_Script: {fileID: 11500000, guid: fe362911cf590754291ef05bba2fd2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1015294603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1015294597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6ab38c13633da469d8ac3a1c49ab89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   limitDistance: 50
