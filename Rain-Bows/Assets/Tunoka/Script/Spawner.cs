@@ -9,7 +9,8 @@ public class Spawner : MonoBehaviour {
     public float SpawnerTime;
     public float SpawnerInterval;
 
-	// Use this for initialization
+
+    float comma = 0;
 	void Start () 
     {
 	}
@@ -18,11 +19,24 @@ public class Spawner : MonoBehaviour {
 	void Update () 
     {
 
-
-        if ( MonsterRest > 0 && SpawnerTime<=0)
+        if (MonsterRest > 0 && SpawnerTime <= 0)
         {
             MonsterRest--;
-            GameObject slime = (GameObject)Instantiate(Slime, transform.position, transform.rotation);
+            SpawnerTime = SpawnerInterval;
+            Instantiate(Slime, transform.position, transform.rotation);
+        }
+        else
+        {
+            Clock(); 
         }
 	}
+    void Clock()
+    {
+        comma += 100 / 60;
+        if (comma >= 100)
+        {
+            SpawnerTime--;
+            comma = 0;
+        }
+    }
 }
