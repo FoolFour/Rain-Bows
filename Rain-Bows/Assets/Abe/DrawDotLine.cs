@@ -43,7 +43,6 @@ public class DrawDotLine : MonoBehaviour
         particleSystem.Stop();
 
         //無駄な処理をさせないように
-        mouseChase.enabled         = false;
         mouseTotalDistance.enabled = false;
     }
 
@@ -58,13 +57,13 @@ public class DrawDotLine : MonoBehaviour
     void DrawBegin()
     {
         //初期化
-        mouseChase.enabled = true;
-        mouseChase.SyncMousePosition();
-
         mouseTotalDistance.enabled = true;
         mouseTotalDistance.ResetTotalDistance();
 
         particleSystem.Play();
+
+        mouseChase.SyncMousePosition();
+        particleSystem.Clear();
         particleSystem.startLifetime = 60 * 60 * 60 * 24; //24時間
     }
 
