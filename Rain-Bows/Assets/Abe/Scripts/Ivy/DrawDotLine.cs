@@ -10,6 +10,7 @@
 //
 // ----- ----- ----- ----- -----
 
+using System.Collections;
 using UnityEngine;
 
 [AddComponentMenu("MyScript/DrawDotLine")]
@@ -23,6 +24,21 @@ public class DrawDotLine : MonoBehaviour
     private ParticleSystem     particleSystem;
     private MouseChase         mouseChase;
     private MouseTotalDistance mouseTotalDistance;
+    private CreatePath         createPath;
+
+    public float LimitDistance
+    {
+        get
+        {
+            return limitDistance;
+        }
+    }
+
+    #endregion
+
+    #region プロパティ
+
+
 
     #endregion
 
@@ -34,6 +50,7 @@ public class DrawDotLine : MonoBehaviour
         particleSystem     = GetComponent<ParticleSystem>();
         mouseChase         = GetComponent<MouseChase>();
         mouseTotalDistance = GetComponent<MouseTotalDistance>();
+        createPath         = GetComponent<CreatePath>();
     }
 
     // 更新前処理
@@ -44,6 +61,7 @@ public class DrawDotLine : MonoBehaviour
 
         //無駄な処理をさせないように
         mouseTotalDistance.enabled = false;
+        createPath.enabled = false;
     }
 
     // 更新処理
@@ -57,14 +75,19 @@ public class DrawDotLine : MonoBehaviour
     void DrawBegin()
     {
         //初期化
+        createPath.enabled = true;
+
         mouseTotalDistance.enabled = true;
         mouseTotalDistance.ResetTotalDistance();
+
+        mouseChase.SyncMousePosition();
 
         particleSystem.Play();
 
         mouseChase.SyncMousePosition();
-        particleSystem.Clear();
         particleSystem.startLifetime = 60 * 60 * 60 * 24; //24時間
+        particleSystem.startColor = new Color(1, 1, 1, 0);
+        StartCoroutine(Reset());
     }
 
     void DrawEnd()
@@ -86,6 +109,14 @@ public class DrawDotLine : MonoBehaviour
         {
             mouseChase.enabled = false;
         }
+        
+    }
+
+    IEnumerator Reset()
+    {
+        yield return null;
+        particleSystem.Clear();
+        particleSystem.startColor = new Color(1, 1, 1, 1);
     }
 	#endregion
 }
