@@ -100,6 +100,7 @@ public class DrawDotLine : MonoBehaviour
         mouseChase.enabled         = false;
         mouseTotalDistance.enabled = false;
         this.enabled               = false;
+        createPath.PathEnd();
     }
 
     void LimitTotalDistance()

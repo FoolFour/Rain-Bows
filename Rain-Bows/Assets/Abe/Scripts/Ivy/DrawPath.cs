@@ -67,7 +67,7 @@ public class DrawPath : MonoBehaviour
     {
         transform.position = createPath.Path[0];
         hashTable.Add("path", createPath.Path);
-        hashTable.Add("time", 3);
+        hashTable.Add("time", time);
         hashTable.Add("easetype", iTween.EaseType.easeOutSine);
         iTween.MoveTo(gameObject, hashTable);
         StartCoroutine(Reset());
@@ -82,7 +82,7 @@ public class DrawPath : MonoBehaviour
 
     IEnumerator Complete()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(time);
         trail.pausing = true;
     }
 	#endregion

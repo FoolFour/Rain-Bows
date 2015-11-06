@@ -77,6 +77,22 @@ public class CreatePath : MonoBehaviour
             path[arrayNumber] = transform.position;
             arrayNumber++;
         }
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            PathEnd();
+        }
+    }
+
+    public void PathEnd()
+    {
+        if(arrayNumber < arrayLength)
+        {
+            for(int i = arrayNumber; i < arrayLength; i++)
+            {
+                path[i] = path[arrayNumber - 1];
+            }
+        }
     }
 	#endregion
 }

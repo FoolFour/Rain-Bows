@@ -10,6 +10,8 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
     //  
     //************
  
+    public GameObject trailParentObject;
+    public string objectTag;
     public Material trailMaterial;                  //the material of the trail.  Changing this during runtime will have no effect.
     public float lifeTime = 1.0f;                   //the amount of time in seconds that the trail lasts
     public float changeTime = 0.5f;                 //time point when the trail begins changing its width (if widthStart != widthEnd)
@@ -68,6 +70,8 @@ public class TrailRendererWith2DCollider : MonoBehaviour {
     private void Awake() {
         //create an object and mesh for the trail
         GameObject trail = new GameObject("Trail", new[] { typeof(MeshRenderer), typeof(MeshFilter), typeof(PolygonCollider2D) } );
+        trail.transform.parent = trailParentObject.transform;
+        trail.tag = objectTag;
         mesh = trail.GetComponent<MeshFilter>().mesh = new Mesh();
         trail.GetComponent<Renderer>().material = trailMaterial;
  
