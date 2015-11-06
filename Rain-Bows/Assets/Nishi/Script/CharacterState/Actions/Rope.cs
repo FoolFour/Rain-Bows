@@ -17,7 +17,6 @@ public class Rope : ICharaState {
 
     public override void Action()
     {
-        
     }
 
     public override void Exit()
@@ -27,14 +26,6 @@ public class Rope : ICharaState {
 
     public override void CollisionEnter(Collision2D other)
     {
-        if (other.transform.tag == "Ivy")
-        {
-            Hashtable hashtable = new Hashtable();
-            hashtable.Add("time", 0.7f);
-            hashtable.Add("easetype", iTween.EaseType.linear);
-            hashtable.Add("path", other.transform.GetChild(0).GetComponent<CreatePath>().Path);
-            iTween.MoveTo(m_GameObject, hashtable);
-        }
         base.CollisionEnter(other);
     }
 

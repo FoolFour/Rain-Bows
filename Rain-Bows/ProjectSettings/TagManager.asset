@@ -7,7 +7,6 @@ TagManager:
   - Wall
   - Ground
   - GreenField
-  - Ivy
   layers:
   - Default
   - TransparentFX
