@@ -47,6 +47,24 @@ public class CharaStateMachine{
         m_Current.CollisionExit(other);
     }
 
+    public void TriggerEnter2D(Collider2D other)
+    {
+        m_Current.TriggerEnter(other);
+    }
+    public void TriggerStay2D(Collider2D other)
+    {
+        m_Current.TriggerStay(other);
+    }
+    public void TriggerExit2D(Collider2D other)
+    {
+        m_Current.TriggerExit(other);
+    }
+
+    public void Complete()
+    {
+        m_Current.Complete();
+    }
+
     public ICharaState GetCurrent()
     {
         return m_Current;

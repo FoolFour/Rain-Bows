@@ -19,6 +19,10 @@ public abstract class ICharaState
     public virtual void CollisionEnter(Collision2D other) { }
     public virtual void CollisionStay(Collision2D other) { }
     public virtual void CollisionExit(Collision2D other) { }
+    public virtual void TriggerEnter(Collider2D other) { }
+    public virtual void TriggerStay(Collider2D other) { }
+    public virtual void TriggerExit(Collider2D other) { }
+    public virtual void Complete() { }
     public abstract bool IsDead();
     public abstract StateName Next();
 

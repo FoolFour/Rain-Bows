@@ -15,7 +15,8 @@ public class Character : MonoBehaviour
     void Start()
     {
         m_stateMachine.AddState(StateName.Default, new Default(gameObject));
-        m_stateMachine.Change(StateName.Default);
+        m_stateMachine.AddState(StateName.Rope, new Rope(gameObject));
+        m_stateMachine.Change(StateName.Rope);
 
     }
 
@@ -38,5 +39,25 @@ public class Character : MonoBehaviour
     public void OnCollisionExit2D(Collision2D collision)
     {
         m_stateMachine.CollisionExit(collision);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        m_stateMachine.TriggerEnter2D(other);
+    }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        m_stateMachine.TriggerStay2D(collision);
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        m_stateMachine.TriggerExit2D(collision);
+    }
+
+    void Complete()
+    {
+        m_stateMachine.Complete();
     }
 }
