@@ -19,12 +19,10 @@ public class DrawPath : MonoBehaviour
 {
 	#region 変数
 
-    [SerializeField, Tooltip("説明文")]
-    GameObject dotParticle;
-
     [SerializeField, Tooltip("パスの移動が完了する時間")]
     private float time;
 
+    GameObject dotParticle;
     private CreatePath createPath;
     private Hashtable  hashTable = new Hashtable();
     TrailRendererWith2DCollider trail;
@@ -44,6 +42,7 @@ public class DrawPath : MonoBehaviour
 	// 初期化処理
     void Awake()
     {
+        dotParticle = transform.parent.Find("DotDrawer").gameObject;
         trail = GetComponent<TrailRendererWith2DCollider>();
         createPath = dotParticle.GetComponent<CreatePath>();
     }
@@ -51,6 +50,7 @@ public class DrawPath : MonoBehaviour
     // 更新前処理
     void Start()
     {
+        
         trail.lifeTime = 0;
     }
 
@@ -84,6 +84,7 @@ public class DrawPath : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         trail.pausing = true;
+        enabled = false;
     }
 	#endregion
 }

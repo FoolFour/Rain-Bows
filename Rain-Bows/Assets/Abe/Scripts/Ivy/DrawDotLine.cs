@@ -62,12 +62,12 @@ public class DrawDotLine : MonoBehaviour
         //無駄な処理をさせないように
         mouseTotalDistance.enabled = false;
         createPath.enabled = false;
+        DrawBegin(); 
     }
 
     // 更新処理
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)) { DrawBegin();          }
         if(Input.GetMouseButton    (0)) { LimitTotalDistance(); }
         if(Input.GetMouseButtonUp  (0)) { DrawEnd();            }
     }
