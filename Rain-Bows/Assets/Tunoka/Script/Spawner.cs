@@ -5,11 +5,12 @@ public class Spawner : MonoBehaviour {
     [SerializeField]
     private GameObject Slime;
 
+    [SerializeField]
+    private int Dir = 1;
+
     public int MonsterRest;
-    public float SpawnerTime;
+    public float SpawnerStartTime;
     public float SpawnerInterval;
-
-
     float comma = 0;
 	void Start () 
     {
@@ -19,11 +20,12 @@ public class Spawner : MonoBehaviour {
 	void Update () 
     {
 
-        if (MonsterRest > 0 && SpawnerTime <= 0)
+        if (MonsterRest > 0 && SpawnerStartTime <= 0)
         {
             MonsterRest--;
-            SpawnerTime = SpawnerInterval;
+            SpawnerStartTime = SpawnerInterval;
             Instantiate(Slime, transform.position, transform.rotation);
+            Slime.GetComponent<Parameter>().dir = Dir;
         }
         else
         {
@@ -35,7 +37,7 @@ public class Spawner : MonoBehaviour {
         comma += 100 / 60;
         if (comma >= 100)
         {
-            SpawnerTime--;
+            SpawnerStartTime--;
             comma = 0;
         }
     }
