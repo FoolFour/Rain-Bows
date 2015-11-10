@@ -47,7 +47,7 @@ public class Rope : ICharaState {
 
     }
 
-    public override void TriggerEnter(Collider2D other)
+    public override void TriggerStay(Collider2D other)
     {
         base.TriggerEnter(other);
         if(other.gameObject.tag == "Ivy")

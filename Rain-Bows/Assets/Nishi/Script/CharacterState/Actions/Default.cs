@@ -36,7 +36,18 @@ public class Default : ICharaState {
         {
             m_Dir *= -1;
         }
+        
         base.CollisionEnter(other);
+    }
+
+    public override void TriggerEnter(Collider2D other)
+    {
+        base.TriggerEnter(other);
+        if (other.tag == "Ivy")
+        {
+            m_next = StateName.Rope;
+            m_isDead = true;
+        }
     }
 
     public override bool IsDead()

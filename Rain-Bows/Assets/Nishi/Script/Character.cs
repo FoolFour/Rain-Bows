@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     {
         m_stateMachine.AddState(StateName.Default, new Default(gameObject));
         m_stateMachine.AddState(StateName.Rope, new Rope(gameObject));
-        m_stateMachine.Change(StateName.Rope);
+        m_stateMachine.Change(StateName.Default);
 
     }
 

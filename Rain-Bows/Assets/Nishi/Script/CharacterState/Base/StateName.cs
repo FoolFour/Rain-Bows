@@ -1,5 +1,7 @@
 ﻿public enum StateName
 {
     Default,
-    Rope
+    Rope,
+    Bubble,
+    water
 }
