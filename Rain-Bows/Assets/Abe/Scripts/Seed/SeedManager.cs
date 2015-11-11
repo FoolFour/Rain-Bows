@@ -66,7 +66,14 @@ public class SeedManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Instantiate(seedObjects[seedKind], mousePointer.transform.position, Quaternion.identity);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            bool hit = Physics.Raycast(ray, 100, LayerMask.GetMask(new string[] { "GreenField" }));
+
+            if(hit)
+            {
+                Instantiate(seedObjects[seedKind], mousePointer.transform.position, Quaternion.identity);
+            }
         }
     }
 
