@@ -161,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41752c526eaa84b49a6052eb6908f66c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dotParticle: {fileID: 162722}
   time: 3
 --- !u!114 &11474148
 MonoBehaviour:
@@ -1274,6 +1273,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Name
       value: IvyDrawer
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dotParticle
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
