@@ -13,5 +13,7 @@
 public enum SeedKind
 {
     Ivy,
-    Despel,
+    WaterGun,
+    Bubble,
+    Bamboo,
 }

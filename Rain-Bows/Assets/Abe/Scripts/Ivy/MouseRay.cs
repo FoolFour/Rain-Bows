@@ -19,10 +19,17 @@ public class MouseRay : MonoBehaviour
 {
 	#region 変数
 
-    [SerializeField, Tooltip("説明文")]
-    bool isHit;
+    [SerializeField, Tooltip("毎回Rayを飛ばすか初回のみ有効")]
+    private bool onAwakeHitRayUpdate;
 
-    
+    [SerializeField, Tooltip("チェックするレイヤー")]
+    private LayerMask layer;
+
+    //ヒットしたかどうか
+    private bool isHit;
+
+    //ヒットの情報
+    private RaycastHit hitInfo;
 
     #endregion
 
@@ -32,6 +39,16 @@ public class MouseRay : MonoBehaviour
     public bool IsHit
     {
         get{ return isHit; }
+    }
+
+    public RaycastHit HitInfo
+    {
+        get
+        {
+            //ヒットしているのみ
+            Debug.Assert(IsHit, "Ray don't hit any GameObjects");
+            return hitInfo;
+        }
     }
 
     #endregion
@@ -48,13 +65,38 @@ public class MouseRay : MonoBehaviour
     // 更新前処理
     void Start()
     {
-        
+        //毎回有効になっているかどうかをみないようにするため
+        if(onAwakeHitRayUpdate)
+        {
+            StartRayUpdate();
+        }
     }
 
-    // 更新処理
-    void Update()
+    IEnumerator RayUpdate()
     {
-        
+        while(true)
+        {
+            MouseRayHit();
+            yield return null;
+        }
+    }
+
+    //任意のタイミングでヒットされたかどうかを見る為 publicに
+    public void MouseRayHit()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        isHit = Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layer);
+    }
+
+    public void StartRayUpdate()
+    {
+        StartCoroutine(RayUpdate());
+    }
+
+    public void StopRayUpdate()
+    {
+        StopCoroutine (RayUpdate());
     }
 	#endregion
 }
