@@ -28,8 +28,8 @@ public class SeedManager : MonoBehaviour
     [SerializeField, Tooltip("ツタのオブジェクト")]
     private GameObject IvyObject;
 
-    [SerializeField, Tooltip("吹き飛ばしのオブジェクト")]
-    private GameObject DespelObject;
+    [SerializeField, Tooltip("水鉄砲のオブジェクト")]
+    private GameObject WaterGunObject;
 
 
     //シードを入れておくオブジェクト
@@ -58,7 +58,7 @@ public class SeedManager : MonoBehaviour
     void Start()
     {
         seedObjects[SeedKind.Ivy]    = IvyObject;
-        seedObjects[SeedKind.Despel] = DespelObject;
+        seedObjects[SeedKind.WaterGun] = WaterGunObject;
     }
 
     // 更新処理
@@ -82,9 +82,9 @@ public class SeedManager : MonoBehaviour
         seedKind = SeedKind.Ivy;
     }
 
-    public void OnSetDespel()
+    public void OnSetWaterGun()
     {
-        seedKind = SeedKind.Despel;
+        seedKind = SeedKind.WaterGun;
     }
 	#endregion
 }

@@ -25,7 +25,10 @@ public class DrawDotLine : MonoBehaviour
     private MouseChase         mouseChase;
     private MouseTotalDistance mouseTotalDistance;
     private CreatePath         createPath;
+    private MouseRay           mouseRay;
 
+    private RaycastHit hitInfo;
+        
     public float LimitDistance
     {
         get
@@ -51,6 +54,7 @@ public class DrawDotLine : MonoBehaviour
         mouseChase         = GetComponent<MouseChase>();
         mouseTotalDistance = GetComponent<MouseTotalDistance>();
         createPath         = GetComponent<CreatePath>();
+        mouseRay           = GetComponent<MouseRay>();
     }
 
     // 更新前処理
@@ -59,9 +63,6 @@ public class DrawDotLine : MonoBehaviour
         particleSystem.Clear();
         particleSystem.Stop();
 
-        //無駄な処理をさせないように
-        mouseTotalDistance.enabled = false;
-        createPath.enabled = false;
         DrawBegin(); 
     }
 
@@ -88,6 +89,11 @@ public class DrawDotLine : MonoBehaviour
         particleSystem.startLifetime = 60 * 60 * 60 * 24; //24時間
         particleSystem.startColor = new Color(1, 1, 1, 0);
         StartCoroutine(Reset());
+
+        if(mouseRay.IsHit)
+        {
+            hitInfo = mouseRay.HitInfo;
+        }
     }
 
     void DrawEnd()
@@ -110,7 +116,23 @@ public class DrawDotLine : MonoBehaviour
         {
             mouseChase.enabled = false;
         }
-        
+
+        //レイを飛ばす
+        mouseRay.MouseRayHit();
+
+        if(mouseRay.IsHit)
+        {
+            //クリックしたときに当たっているオブジェクトで判定しないように
+            if(hitInfo.collider.gameObject != hitInfo.collider.gameObject)
+            {
+                mouseChase.enabled = false;
+            }
+        }
+        else
+        {
+            //これをしないとクリックしたときのオブジェクトから離れてまた当たった時に判定してくれない
+            hitInfo = new RaycastHit();
+        }
     }
 
     IEnumerator Reset()
