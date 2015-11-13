@@ -10,11 +10,13 @@ public class BamBooTop : MonoBehaviour {
     [SerializeField]
     private bool Camerain = false; //カメラに映っているか
 
+    public int UpDown = 0;
 
     void Start () 
     {
         defaultScale = transform.lossyScale;
         _BamBooMain = transform.root.gameObject;
+        transform.root.gameObject.transform.Rotate(0, 0, UpDown);
     }
     
     void Update () 
@@ -30,7 +32,7 @@ public class BamBooTop : MonoBehaviour {
 
         if (Camerain == true)
         {
-            _BamBooMain.transform.localScale += new Vector3(0, 0.5f, 0);
+            _BamBooMain.transform.localScale += new Vector3(0, 0.1f , 0);
 
             //float pos =(_BamBooMain.transform.localScale.y /2) - _BamBooMain.transform.position.y;
             //transform.position = new Vector3(transform.position.x, pos, transform.position.z);
