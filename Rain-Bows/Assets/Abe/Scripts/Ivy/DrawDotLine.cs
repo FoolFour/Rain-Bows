@@ -27,7 +27,7 @@ public class DrawDotLine : MonoBehaviour
     private CreatePath         createPath;
     private MouseRay           mouseRay;
 
-    private RaycastHit hitInfo;
+    private RaycastHit? hitInfo;
         
     public float LimitDistance
     {
@@ -115,6 +115,7 @@ public class DrawDotLine : MonoBehaviour
         if(mouseTotalDistance.TotalDistance > limitDistance)
         {
             mouseChase.enabled = false;
+            return;
         }
 
         //レイを飛ばす
@@ -123,15 +124,18 @@ public class DrawDotLine : MonoBehaviour
         if(mouseRay.IsHit)
         {
             //クリックしたときに当たっているオブジェクトで判定しないように
-            if(hitInfo.collider.gameObject != hitInfo.collider.gameObject)
+            if(!hitInfo.HasValue)
             {
                 mouseChase.enabled = false;
+                hitInfo = mouseRay.HitInfo;
+                return;
             }
         }
-        else
+
+        if(hitInfo.HasValue)
         {
             //これをしないとクリックしたときのオブジェクトから離れてまた当たった時に判定してくれない
-            hitInfo = new RaycastHit();
+            hitInfo = null;
         }
     }
 
