@@ -16,6 +16,8 @@ public class Character : MonoBehaviour
     {
         m_stateMachine.AddState(StateName.Default, new Default(gameObject));
         m_stateMachine.AddState(StateName.Rope, new Rope(gameObject));
+        m_stateMachine.AddState(StateName.Bubble, new Bubble(gameObject));
+        m_stateMachine.AddState(StateName.water, new Water(gameObject));
         m_stateMachine.Change(StateName.Default);
 
     }

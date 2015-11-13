@@ -23,6 +23,20 @@ public class Default : ICharaState {
         {
             m_GameObject.transform.position += new Vector3(0.1f, 0f, 0f) * m_Dir;
         }
+
+        if (m_GameObject.transform.parent != null)
+        {
+            if (m_GameObject.transform.parent.tag == "Bubble")
+            {
+                m_next = StateName.Bubble;
+                m_isDead = true;
+            }
+            if (m_GameObject.transform.parent.tag == "Water")
+            {
+                m_next = StateName.water;
+                m_isDead = true;
+            }
+        }
     }
 
     public override void Exit()
