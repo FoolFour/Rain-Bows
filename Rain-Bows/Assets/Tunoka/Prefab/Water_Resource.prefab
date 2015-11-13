@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 1.60000002, z: 0}
+  m_LocalPosition: {x: -12.5100002, y: -1.25999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 488054}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Slime: {fileID: 151248, guid: 98c7fd9ce0849d649bd7f75b561dc211, type: 2}
-  Dir: 1
+  Dir: -1
   MonsterRest: 5
   SpawnerStartTime: 2
   SpawnerInterval: 3

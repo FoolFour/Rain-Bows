@@ -6,11 +6,11 @@ public class Spawner : MonoBehaviour {
     private GameObject Slime;
 
     [SerializeField]
-    private int Dir = 1;
+    private int Dir = 1;//プレイヤーの進む初期方向
 
-    public int MonsterRest;
-    public float SpawnerStartTime;
-    public float SpawnerInterval;
+    public int MonsterRest;//出る数
+    public float SpawnerStartTime;//最初に出る数
+    public float SpawnerInterval;//一回出てからのInterval
     float comma = 0;
 	void Start () 
     {
@@ -24,8 +24,9 @@ public class Spawner : MonoBehaviour {
         {
             MonsterRest--;
             SpawnerStartTime = SpawnerInterval;
-            Instantiate(Slime, transform.position, transform.rotation);
-            Slime.GetComponent<Parameter>().dir = Dir;
+            GameObject slime = (GameObject)Instantiate(
+                                        Slime, transform.position, transform.rotation);
+            slime.GetComponent<Parameter>().dir = Dir;
         }
         else
         {
