@@ -50,7 +50,6 @@ public class DrawPath : MonoBehaviour
     // 更新前処理
     void Start()
     {
-        
         trail.lifeTime = 0;
     }
 

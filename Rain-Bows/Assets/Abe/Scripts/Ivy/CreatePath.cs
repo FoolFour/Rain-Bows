@@ -84,6 +84,15 @@ public class CreatePath : MonoBehaviour
         }
     }
 
+    public void PathAdd(Vector3 position)
+    {
+        if(arrayNumber >= arrayLength)
+        {
+            path[arrayNumber] = position;
+            arrayNumber++;
+        }
+    }
+
     public void PathEnd()
     {
         if(arrayNumber < arrayLength)
