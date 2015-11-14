@@ -25,7 +25,7 @@ public class DrawDotLine : MonoBehaviour
     private MouseChase         mouseChase;
     private MouseTotalDistance mouseTotalDistance;
     private CreatePath         createPath;
-    private MouseRay           mouseRay;
+    private MouseLineCast    mouseRay;
 
     private RaycastHit? hitInfo;
         
@@ -54,7 +54,7 @@ public class DrawDotLine : MonoBehaviour
         mouseChase         = GetComponent<MouseChase>();
         mouseTotalDistance = GetComponent<MouseTotalDistance>();
         createPath         = GetComponent<CreatePath>();
-        mouseRay           = GetComponent<MouseRay>();
+        mouseRay           = GetComponent<MouseLineCast>();
     }
 
     // 更新前処理
@@ -90,6 +90,8 @@ public class DrawDotLine : MonoBehaviour
         particleSystem.startColor = new Color(1, 1, 1, 0);
         StartCoroutine(Reset());
 
+
+
         if(mouseRay.IsHit)
         {
             hitInfo = mouseRay.HitInfo;
@@ -119,7 +121,7 @@ public class DrawDotLine : MonoBehaviour
         }
 
         //レイを飛ばす
-        mouseRay.MouseRayHit();
+        mouseRay.HitCheck();
 
         if(mouseRay.IsHit)
         {
@@ -128,6 +130,8 @@ public class DrawDotLine : MonoBehaviour
             {
                 mouseChase.enabled = false;
                 hitInfo = mouseRay.HitInfo;
+                createPath.PathAdd(hitInfo.Value.point);
+                
                 return;
             }
         }
