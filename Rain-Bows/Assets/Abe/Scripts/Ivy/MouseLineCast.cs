@@ -22,16 +22,16 @@ public class MouseLineCast : MouseHitCheck
 
     protected override void HitAwake()
     {
-        previousPosition = gameObject.transform.position;
+        previousPosition = Input.mousePosition;
     }
 
     public override void HitCheck()
     {
-        isHit = Physics.Linecast(previousPosition, transform.position, out hitInfo,layer);
+        isHit = Physics.Linecast(previousPosition, Input.mousePosition, out hitInfo, layer);
     }
 
     void LateUpdate()
     {
-        previousPosition = gameObject.transform.position;
+        previousPosition = Input.mousePosition;
     }
 }
