@@ -203,7 +203,7 @@ GameObject:
   - 33: {fileID: 127524167}
   - 65: {fileID: 127524166}
   - 23: {fileID: 127524165}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2038,7 +2038,7 @@ MonoBehaviour:
   mousePointer: {fileID: 771802254}
   seedKind: 0
   IvyObject: {fileID: 163088, guid: 5362eed87525a304e9c9973bc90b51fe, type: 2}
-  DespelObject: {fileID: 0}
+  WaterGunObject: {fileID: 0}
 --- !u!4 &1337500955
 Transform:
   m_ObjectHideFlags: 0
@@ -2194,7 +2194,7 @@ GameObject:
   - 33: {fileID: 1727399346}
   - 65: {fileID: 1727399345}
   - 23: {fileID: 1727399344}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

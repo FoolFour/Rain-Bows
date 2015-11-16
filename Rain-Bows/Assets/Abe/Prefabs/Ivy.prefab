@@ -31,6 +31,7 @@ GameObject:
   - 114: {fileID: 11410512}
   - 114: {fileID: 11474148}
   - 114: {fileID: 11437062}
+  - 114: {fileID: 11410916}
   m_Layer: 0
   m_Name: DotDrawer
   m_TagString: Ivy
@@ -136,6 +137,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe362911cf590754291ef05bba2fd2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11410916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756fef120e9b3a4488a22c4b310ea390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAwakeHitUpdate: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &11437062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1277,6 +1293,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: dotParticle
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: layer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

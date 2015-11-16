@@ -57,7 +57,7 @@ public class SeedManager : MonoBehaviour
     // 更新前処理
     void Start()
     {
-        seedObjects[SeedKind.Ivy]    = IvyObject;
+        seedObjects[SeedKind.Ivy]      = IvyObject;
         seedObjects[SeedKind.WaterGun] = WaterGunObject;
     }
 
@@ -68,7 +68,7 @@ public class SeedManager : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            bool hit = Physics.Raycast(ray, 100, LayerMask.GetMask(new string[] { "GreenField" }));
+            bool hit = Physics.Raycast(ray, 100, LayerMask.GetMask(new string[] { "Ground" }));
 
             if(hit)
             {
