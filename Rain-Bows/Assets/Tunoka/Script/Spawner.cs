@@ -26,7 +26,6 @@ public class Spawner : MonoBehaviour {
             SpawnerStartTime = SpawnerInterval;
             GameObject slime = (GameObject)Instantiate(
                                         Slime, transform.position, transform.rotation);
-            slime.GetComponent<Parameter>().dir = Dir;
         }
         else
         {

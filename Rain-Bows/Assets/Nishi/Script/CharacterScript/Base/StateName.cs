@@ -3,5 +3,5 @@
     Default,
     Rope,
     Bubble,
-    water
+    Water
 }
