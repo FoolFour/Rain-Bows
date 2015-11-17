@@ -5,11 +5,15 @@ public class Rope : ICharaState {
 
     public void Start()
     {
-        GameObject gameObj = HitObject.transform.parent.FindChild("DotDrawer").gameObject;
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+
+        GameObject gameObj = m_HitObject.transform.parent.FindChild("DotDrawer").gameObject;
         Vector3[] path = gameObj.GetComponent<CreatePath>().Path;
         Hashtable hash = new Hashtable();
         hash.Add("time", 5.0f);
         hash.Add("easeType", iTween.EaseType.linear);
+        hash.Add("oncompletetarget", gameObject);
+        hash.Add("oncomplete", "ChageState");
         hash.Add("path", path);
         iTween.MoveTo(gameObject, hash);
     }
@@ -27,5 +31,21 @@ public class Rope : ICharaState {
     public override StateName Next()
     {
         return m_next;
+    }
+
+    public override void HitSend(GameObject hit)
+    {
+        m_HitObject = hit;
+    }
+
+    public override GameObject HitCall()
+    {
+        return m_HitObject;
+    }
+
+    public void ChageState()
+    {
+        m_next = StateName.Default;
+        m_isDead = true;
     }
 }

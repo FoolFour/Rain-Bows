@@ -28,8 +28,10 @@ public class CharacterCoach : MonoBehaviour {
     {
         if(m_CurrentState.IsDead())
         {
+            GameObject temp = m_CurrentState.HitCall();
             Destroy(m_CurrentState);
             m_CurrentState = (ICharaState)gameObject.AddComponent(m_states[m_CurrentState.Next()]);
+            m_CurrentState.HitSend(temp);
         }
     }
 }

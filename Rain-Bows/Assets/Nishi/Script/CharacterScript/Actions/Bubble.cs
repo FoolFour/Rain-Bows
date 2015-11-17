@@ -5,7 +5,8 @@ public class Bubble : ICharaState {
 
     public void Start()
     {
-
+        gameObject.GetComponent<Rigidbody2D>().Sleep();
+        gameObject.transform.SetParent(m_HitObject.transform,false);
     }
 
     public void Update()
@@ -21,5 +22,15 @@ public class Bubble : ICharaState {
     public override StateName Next()
     {
         return m_next;
+    }
+
+    public override void HitSend(GameObject hit)
+    {
+        m_HitObject = hit;
+    }
+
+    public override GameObject HitCall()
+    {
+        return m_HitObject;
     }
 }
