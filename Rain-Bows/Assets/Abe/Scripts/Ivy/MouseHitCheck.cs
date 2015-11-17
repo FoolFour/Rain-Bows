@@ -62,7 +62,7 @@ public abstract class MouseHitCheck : MonoBehaviour
 
     protected virtual void HitAwake()
     {
-
+        //
     }
 
     // 更新前処理

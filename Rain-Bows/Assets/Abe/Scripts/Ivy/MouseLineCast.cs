@@ -22,6 +22,7 @@ public class MouseLineCast : MouseHitCheck
 
     protected override void HitAwake()
     {
+        //
         previousPosition = Input.mousePosition;
     }
 
