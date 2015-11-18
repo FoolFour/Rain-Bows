@@ -5,10 +5,12 @@ using System;
 public class Default : ICharaState
 {
     private Transform m_GroundCheck;
+    private Transform m_Ground;
 
     public void Start()
     {
         m_GroundCheck = gameObject.transform.GetChild(0);
+        m_Ground = gameObject.transform.GetChild(1);
     }
 
     public void Update()
@@ -17,6 +19,14 @@ public class Default : ICharaState
         {
             gameObject.transform.position += new Vector3(0.1f, 0.0f, 0.0f) * m_dir;
         }
+
+        int layerMask = LayerMask.GetMask(new string[] { "Ground" });
+        Collider2D hit = Physics2D.OverlapCircle(m_GroundCheck.position, 1, layerMask);
+        if(hit != null)
+        {
+            gameObject.transform.rotation = hit.gameObject.transform.rotation;
+        }
+
     }
 
     public override bool IsDead()
