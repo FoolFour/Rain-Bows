@@ -31,6 +31,12 @@ public class SeedManager : MonoBehaviour
     [SerializeField, Tooltip("水鉄砲のオブジェクト")]
     private GameObject WaterGunObject;
 
+    [SerializeField, Tooltip("シャボンのオブジェクト")]
+    private GameObject BubbleObject;
+
+    [SerializeField, Tooltip("竹のオブジェクト")]
+    private GameObject BambooObject;
+
 
     //シードを入れておくオブジェクト
     private Dictionary<SeedKind, GameObject> seedObjects = new Dictionary<SeedKind, GameObject>();
@@ -68,9 +74,11 @@ public class SeedManager : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            bool hit = Physics.Raycast(ray, 100, LayerMask.GetMask(new string[] { "Ground" }));
+            //bool hit = Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask(new string[] { "Ground" }));
 
-            if(hit)
+            RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, 10, LayerMask.GetMask(new string[] { "Ground" }));
+
+            if(hitInfo.collider)
             {
                 Instantiate(seedObjects[seedKind], mousePointer.transform.position, Quaternion.identity);
             }
@@ -86,5 +94,8 @@ public class SeedManager : MonoBehaviour
     {
         seedKind = SeedKind.WaterGun;
     }
+
+    
+    
 	#endregion
 }

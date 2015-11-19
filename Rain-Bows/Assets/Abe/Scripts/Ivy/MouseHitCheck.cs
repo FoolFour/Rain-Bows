@@ -25,11 +25,8 @@ public abstract class MouseHitCheck : MonoBehaviour
     [SerializeField, Tooltip("チェックするレイヤー")]
     protected LayerMask layer;
 
-    //ヒットしたかどうか
-    protected bool isHit;
-
     //ヒットの情報
-    protected RaycastHit hitInfo;
+    protected RaycastHit2D hitInfo;
     #endregion
 
 
@@ -37,17 +34,24 @@ public abstract class MouseHitCheck : MonoBehaviour
 
     public bool IsHit
     {
-        get{ return isHit; }
+        get{ return hitInfo.collider; }
     }
 
-    public RaycastHit HitInfo
+#pragma warning disable CS0108
+    public Collider2D collider2D
     {
         get
         {
             //ヒットしているのみ
             Debug.Assert(IsHit, "Ray don't hit any GameObjects");
-            return hitInfo;
+            return hitInfo.collider;
         }
+    }
+#pragma warning restore CS0108
+
+    public RaycastHit2D HitInfo
+    {
+        get{ return hitInfo; }
     }
 
     #endregion

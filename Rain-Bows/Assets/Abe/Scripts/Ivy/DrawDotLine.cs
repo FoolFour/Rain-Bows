@@ -21,14 +21,22 @@ public class DrawDotLine : MonoBehaviour
     [SerializeField, Tooltip("線の制限")]
 	private float limitDistance;
 
+    #pragma warning disable CS0108
     private ParticleSystem     particleSystem;
+
     private MouseChase         mouseChase;
     private MouseTotalDistance mouseTotalDistance;
     private CreatePath         createPath;
-    private MouseLineCast    mouseRay;
+    private MouseLineCast      mouseRay;
 
-    private RaycastHit? hitInfo;
-        
+    private bool        hit;
+    #pragma warning restore CS0108     
+    
+
+    #endregion
+
+    #region プロパティ
+
     public float LimitDistance
     {
         get
@@ -36,12 +44,6 @@ public class DrawDotLine : MonoBehaviour
             return limitDistance;
         }
     }
-
-    #endregion
-
-    #region プロパティ
-
-
 
     #endregion
 
@@ -90,12 +92,7 @@ public class DrawDotLine : MonoBehaviour
         particleSystem.startColor = new Color(1, 1, 1, 0);
         StartCoroutine(Reset());
 
-
-
-        if(mouseRay.IsHit)
-        {
-            hitInfo = mouseRay.HitInfo;
-        }
+        hit = true;
     }
 
     void DrawEnd()
@@ -113,6 +110,7 @@ public class DrawDotLine : MonoBehaviour
 
     void LimitTotalDistance()
     {
+        Debug.Log(mouseRay.IsHit);
         //書ける線の距離
         if(mouseTotalDistance.TotalDistance > limitDistance)
         {
@@ -123,23 +121,18 @@ public class DrawDotLine : MonoBehaviour
         //レイを飛ばす
         mouseRay.HitCheck();
 
-        if(mouseRay.IsHit)
+        if(mouseRay.IsHit && !hit)
         {
             //クリックしたときに当たっているオブジェクトで判定しないように
-            if(!hitInfo.HasValue)
-            {
-                mouseChase.enabled = false;
-                hitInfo = mouseRay.HitInfo;
-                createPath.PathAdd(hitInfo.Value.point);
-                
-                return;
-            }
+            mouseChase.enabled = false;
+            createPath.PathAdd(mouseRay.HitInfo.point);
+            return;
         }
 
-        if(hitInfo.HasValue)
+        if(hit)
         {
             //これをしないとクリックしたときのオブジェクトから離れてまた当たった時に判定してくれない
-            hitInfo = null;
+            hit = mouseRay.IsHit;
         }
     }
 
