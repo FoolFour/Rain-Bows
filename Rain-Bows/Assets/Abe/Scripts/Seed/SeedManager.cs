@@ -95,7 +95,14 @@ public class SeedManager : MonoBehaviour
         seedKind = SeedKind.WaterGun;
     }
 
-    
-    
+    public void OnSetBubble()
+    {
+        seedKind = SeedKind.Bubble;
+    }
+
+    public void OnSetBamboo()
+    {
+        seedKind = SeedKind.Bamboo;
+    }
 	#endregion
 }

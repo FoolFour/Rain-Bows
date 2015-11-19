@@ -37,7 +37,6 @@ public abstract class MouseHitCheck : MonoBehaviour
         get{ return hitInfo.collider; }
     }
 
-#pragma warning disable CS0108
     public Collider2D collider2D
     {
         get
@@ -47,7 +46,6 @@ public abstract class MouseHitCheck : MonoBehaviour
             return hitInfo.collider;
         }
     }
-#pragma warning restore CS0108
 
     public RaycastHit2D HitInfo
     {

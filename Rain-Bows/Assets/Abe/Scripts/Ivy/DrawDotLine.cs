@@ -21,7 +21,6 @@ public class DrawDotLine : MonoBehaviour
     [SerializeField, Tooltip("線の制限")]
 	private float limitDistance;
 
-    #pragma warning disable CS0108
     private ParticleSystem     particleSystem;
 
     private MouseChase         mouseChase;
@@ -29,8 +28,7 @@ public class DrawDotLine : MonoBehaviour
     private CreatePath         createPath;
     private MouseLineCast      mouseRay;
 
-    private bool        hit;
-    #pragma warning restore CS0108     
+    private bool        hit;   
     
 
     #endregion
