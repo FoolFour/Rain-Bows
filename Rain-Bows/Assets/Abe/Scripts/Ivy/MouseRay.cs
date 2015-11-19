@@ -18,9 +18,8 @@ public class MouseRay : MouseHitCheck
     //任意のタイミングでヒットされたかどうかを見る為 publicに
     public override void HitCheck()
     {
-        //
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        isHit = Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layer);
+        hitInfo = Physics2D.Raycast(ray.origin, ray.direction, 10, layer);
     }
 }

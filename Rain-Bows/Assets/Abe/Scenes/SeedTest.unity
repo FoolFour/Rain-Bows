@@ -228,8 +228,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 127524168}
   - 33: {fileID: 127524167}
-  - 65: {fileID: 127524166}
   - 23: {fileID: 127524165}
+  - 61: {fileID: 127524166}
   m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -261,18 +261,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &127524166
-BoxCollider:
+--- !u!61 &127524166
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127524164}
+  m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1}
 --- !u!33 &127524167
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2066,6 +2067,8 @@ MonoBehaviour:
   seedKind: 0
   IvyObject: {fileID: 163088, guid: 5362eed87525a304e9c9973bc90b51fe, type: 2}
   WaterGunObject: {fileID: 0}
+  BubbleObject: {fileID: 0}
+  BambooObject: {fileID: 0}
 --- !u!4 &1337500955
 Transform:
   m_ObjectHideFlags: 0
@@ -2219,8 +2222,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1727399347}
   - 33: {fileID: 1727399346}
-  - 65: {fileID: 1727399345}
   - 23: {fileID: 1727399344}
+  - 61: {fileID: 1727399345}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -2252,18 +2255,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1727399345
-BoxCollider:
+--- !u!61 &1727399345
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1727399343}
+  m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1}
 --- !u!33 &1727399346
 MeshFilter:
   m_ObjectHideFlags: 0
