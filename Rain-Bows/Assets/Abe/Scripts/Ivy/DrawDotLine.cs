@@ -21,6 +21,9 @@ public class DrawDotLine : MonoBehaviour
     [SerializeField, Tooltip("線の制限")]
 	private float limitDistance;
 
+    [SerializeField, Tooltip("消える時の時間"),Range(0, 1)]
+    private float erase;
+
     private ParticleSystem     particleSystem;
 
     private MouseChase         mouseChase;
@@ -104,6 +107,7 @@ public class DrawDotLine : MonoBehaviour
         mouseTotalDistance.enabled = false;
         this.enabled               = false;
         createPath.PathEnd();
+        StartCoroutine(Erase());
     }
 
     void LimitTotalDistance()
@@ -131,6 +135,40 @@ public class DrawDotLine : MonoBehaviour
         {
             //これをしないとクリックしたときのオブジェクトから離れてまた当たった時に判定してくれない
             hit = mouseRay.IsHit;
+        }
+    }
+
+    IEnumerator Erase()
+    {
+        ParticleSystem particleSystem = GetComponent<ParticleSystem>();
+        ParticleSystem.Particle[] particles;
+
+	    particleSystem = GetComponent<ParticleSystem>();
+        
+        //現在のパーティクルの数を取得
+        particles = new ParticleSystem.Particle[particleSystem.maxParticles]; 
+
+        //現在のパーティクルの状態を取得
+        int numParticlesAlive = particleSystem.GetParticles(particles);
+
+        while(true)
+        {
+            //パーティクルのアルファを下げる
+            for (int i = 0; i < numParticlesAlive; i++)
+		    {
+			    particles[i].color -= new Color(0, 0, 0, erase);
+		    }
+
+            //状態を反映
+            particleSystem.SetParticles(particles, numParticlesAlive);
+
+            if(particles[0].color.a <= 0)
+            {
+                //終了処理
+                particleSystem.Stop();
+                yield break;
+            }
+            yield return null;
         }
     }
 
