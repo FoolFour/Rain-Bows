@@ -11,6 +11,12 @@ public class Bubble : ICharaState {
 
     public void Update()
     {
+        if (gameObject.transform.parent == null)
+        {
+            gameObject.GetComponent<Rigidbody2D>().WakeUp();
+            m_next = StateName.Default;
+            m_isDead = true;
+        }
 
     }
 

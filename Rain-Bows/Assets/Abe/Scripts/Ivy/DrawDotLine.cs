@@ -21,14 +21,23 @@ public class DrawDotLine : MonoBehaviour
     [SerializeField, Tooltip("線の制限")]
 	private float limitDistance;
 
+    [SerializeField, Tooltip("消える時の時間"),Range(0, 1)]
+    private float erase;
+
     private ParticleSystem     particleSystem;
+
     private MouseChase         mouseChase;
     private MouseTotalDistance mouseTotalDistance;
     private CreatePath         createPath;
-    private MouseLineCast    mouseRay;
+    private MouseLineCast      mouseRay;
 
-    private RaycastHit? hitInfo;
-        
+    private bool        hit;   
+    
+
+    #endregion
+
+    #region プロパティ
+
     public float LimitDistance
     {
         get
@@ -36,12 +45,6 @@ public class DrawDotLine : MonoBehaviour
             return limitDistance;
         }
     }
-
-    #endregion
-
-    #region プロパティ
-
-
 
     #endregion
 
@@ -90,12 +93,7 @@ public class DrawDotLine : MonoBehaviour
         particleSystem.startColor = new Color(1, 1, 1, 0);
         StartCoroutine(Reset());
 
-
-
-        if(mouseRay.IsHit)
-        {
-            hitInfo = mouseRay.HitInfo;
-        }
+        hit = true;
     }
 
     void DrawEnd()
@@ -109,10 +107,12 @@ public class DrawDotLine : MonoBehaviour
         mouseTotalDistance.enabled = false;
         this.enabled               = false;
         createPath.PathEnd();
+        StartCoroutine(Erase());
     }
 
     void LimitTotalDistance()
     {
+        Debug.Log(mouseRay.IsHit);
         //書ける線の距離
         if(mouseTotalDistance.TotalDistance > limitDistance)
         {
@@ -123,23 +123,52 @@ public class DrawDotLine : MonoBehaviour
         //レイを飛ばす
         mouseRay.HitCheck();
 
-        if(mouseRay.IsHit)
+        if(mouseRay.IsHit && !hit)
         {
             //クリックしたときに当たっているオブジェクトで判定しないように
-            if(!hitInfo.HasValue)
-            {
-                mouseChase.enabled = false;
-                hitInfo = mouseRay.HitInfo;
-                createPath.PathAdd(hitInfo.Value.point);
-                
-                return;
-            }
+            mouseChase.enabled = false;
+            createPath.PathAdd(mouseRay.HitInfo.point);
+            return;
         }
 
-        if(hitInfo.HasValue)
+        if(hit)
         {
             //これをしないとクリックしたときのオブジェクトから離れてまた当たった時に判定してくれない
-            hitInfo = null;
+            hit = mouseRay.IsHit;
+        }
+    }
+
+    IEnumerator Erase()
+    {
+        ParticleSystem particleSystem = GetComponent<ParticleSystem>();
+        ParticleSystem.Particle[] particles;
+
+	    particleSystem = GetComponent<ParticleSystem>();
+        
+        //現在のパーティクルの数を取得
+        particles = new ParticleSystem.Particle[particleSystem.maxParticles]; 
+
+        //現在のパーティクルの状態を取得
+        int numParticlesAlive = particleSystem.GetParticles(particles);
+
+        while(true)
+        {
+            //パーティクルのアルファを下げる
+            for (int i = 0; i < numParticlesAlive; i++)
+		    {
+			    particles[i].color -= new Color(0, 0, 0, erase);
+		    }
+
+            //状態を反映
+            particleSystem.SetParticles(particles, numParticlesAlive);
+
+            if(particles[0].color.a <= 0)
+            {
+                //終了処理
+                particleSystem.Stop();
+                yield break;
+            }
+            yield return null;
         }
     }
 

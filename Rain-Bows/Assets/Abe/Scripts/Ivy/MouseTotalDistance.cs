@@ -22,7 +22,6 @@ public class MouseTotalDistance : MonoBehaviour
 	//進んだ距離
 	private float totalDistance;
 	private Vector3 previousPosition;
-	private MouseChase mouseChase;
     #endregion
 
 
@@ -40,7 +39,6 @@ public class MouseTotalDistance : MonoBehaviour
 	// 初期化処理
     void Awake()
 	{
-		mouseChase       = GetComponent<MouseChase>();
 		totalDistance    = 0;
     }
 
