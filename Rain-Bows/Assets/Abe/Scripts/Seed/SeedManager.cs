@@ -41,6 +41,8 @@ public class SeedManager : MonoBehaviour
     //シードを入れておくオブジェクト
     private Dictionary<SeedKind, GameObject> seedObjects = new Dictionary<SeedKind, GameObject>();
 
+    private MouseRay mouseRay;
+
     #endregion
 
 
@@ -57,7 +59,7 @@ public class SeedManager : MonoBehaviour
 	// 初期化処理
     void Awake()
     {
-
+        mouseRay = GetComponent<MouseRay>();
     }
 
     // 更新前処理
@@ -65,6 +67,8 @@ public class SeedManager : MonoBehaviour
     {
         seedObjects[SeedKind.Ivy]      = IvyObject;
         seedObjects[SeedKind.WaterGun] = WaterGunObject;
+        seedObjects[SeedKind.Bubble]   = BubbleObject;
+        seedObjects[SeedKind.Bamboo]   = BambooObject;
     }
 
     // 更新処理
@@ -72,15 +76,18 @@ public class SeedManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            mouseRay.HitCheck();
 
-            //bool hit = Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask(new string[] { "Ground" }));
-
-            RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, 10, LayerMask.GetMask(new string[] { "Ground" }));
-
-            if(hitInfo.collider)
+            if(mouseRay.IsHit)
             {
-                Instantiate(seedObjects[seedKind], mousePointer.transform.position, Quaternion.identity);
+                if(mouseRay.HitInfo.collider.tag == "Seed")
+                {
+                    Destroy(mouseRay.HitInfo.collider.gameObject);
+                }
+                else if(mouseRay.HitInfo.collider.tag == "Ground")
+                {
+                    Instantiate(seedObjects[seedKind], mousePointer.transform.position, Quaternion.identity);
+                }
             }
         }
     }

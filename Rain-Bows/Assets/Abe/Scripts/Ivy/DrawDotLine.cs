@@ -106,8 +106,8 @@ public class DrawDotLine : MonoBehaviour
         mouseChase.enabled         = false;
         mouseTotalDistance.enabled = false;
         this.enabled               = false;
+
         createPath.PathEnd();
-        StartCoroutine(Erase());
     }
 
     void LimitTotalDistance()
@@ -136,6 +136,11 @@ public class DrawDotLine : MonoBehaviour
             //これをしないとクリックしたときのオブジェクトから離れてまた当たった時に判定してくれない
             hit = mouseRay.IsHit;
         }
+    }
+
+    public void EraseDot()
+    {
+        StartCoroutine(Erase());
     }
 
     IEnumerator Erase()
