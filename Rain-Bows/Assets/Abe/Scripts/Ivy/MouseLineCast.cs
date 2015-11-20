@@ -18,21 +18,26 @@ using System;
 [AddComponentMenu("Mouse/MouseLineCast")]
 public class MouseLineCast : MouseHitCheck
 {
-    private Vector3 previousPosition;
+    private Vector2 previousPosition;
 
     protected override void HitAwake()
     {
-        //
-        previousPosition = Input.mousePosition;
+        previousPosition = ChangePosition(Input.mousePosition);
     }
 
     public override void HitCheck()
     {
-        isHit = Physics.Linecast(previousPosition, Input.mousePosition, out hitInfo, layer);
+        Vector2 mousePosition = ChangePosition(Input.mousePosition);
+        hitInfo = Physics2D.Linecast(previousPosition, mousePosition, layer);
     }
 
     void LateUpdate()
     {
-        previousPosition = Input.mousePosition;
+        previousPosition = ChangePosition(Input.mousePosition);
+    }
+
+    Vector2 ChangePosition(Vector2 position)
+    {
+        return Camera.main.ScreenToWorldPoint(position);
     }
 }
