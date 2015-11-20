@@ -21,7 +21,19 @@ public class SoapBubble : MonoBehaviour {
      
     }
     private void OnTriggerStay2D(Collider2D col)
-    {   //子に何かがいたら吐き出す
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            if (transform.childCount == 0)
+            {
+                col.transform.parent = transform;
+                col.transform.localPosition = Vector2.zero;
+                return;
+            }
+            return;
+        }
+
+        //子に何かがいたら吐き出す
         if (transform.childCount != 0)
         {
             transform.DetachChildren();

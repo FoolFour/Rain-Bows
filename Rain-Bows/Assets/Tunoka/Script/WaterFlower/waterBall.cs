@@ -19,8 +19,14 @@ public class waterBall : MonoBehaviour {
         //飛んでいく
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, transform.localPosition + RotPos, walkSpeed * 0.01f);
 	}
+
     private void OnTriggerStay2D(Collider2D col)
     {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
+
         //子に何かがいたら吐き出す
         if (transform.childCount != 0)
         {

@@ -56,4 +56,12 @@ public class WaterFlower : MonoBehaviour {
     {
         rotPos = pos;
     }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            PlayerBullet = col.transform.gameObject;
+        }
+    }
 }
