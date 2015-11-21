@@ -7,6 +7,8 @@ public abstract class ICharaState : MonoBehaviour
     protected StateName m_next;
     protected int m_dir = 1;
     protected GameObject m_HitObject;
+    protected Rigidbody2D m_Rigid;
+    protected Animator m_Animator;
 
     public abstract bool IsDead();
     public abstract StateName Next();

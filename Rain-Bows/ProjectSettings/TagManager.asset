@@ -10,6 +10,7 @@ TagManager:
   - Det
   - Ivy
   - Water
+  - Seed
   layers:
   - Default
   - TransparentFX
