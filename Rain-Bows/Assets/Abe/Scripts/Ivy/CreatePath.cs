@@ -21,14 +21,14 @@ public class CreatePath : MonoBehaviour
 	#region 変数
 
     [SerializeField, Tooltip("説明文")]
-    private int number;
+    private int pathInterval;
 
     [SerializeField, Tooltip("")]
-    private int arrayLength;
+    private int pathNumber;
 
     private MouseTotalDistance totalDistance;
 
-    private float num;
+    private float nextCreateDistance;
     private int arrayNumber;
 
     [SerializeField]
@@ -58,35 +58,30 @@ public class CreatePath : MonoBehaviour
     void Awake()
     {
         totalDistance = GetComponent<MouseTotalDistance>();
-        path = new Vector3[arrayLength];
+        path = new Vector3[pathNumber];
     }
 
     // 更新前処理
     void Start()
     {
-        num = 0;
+        nextCreateDistance = 0;
         arrayNumber = 0;
     }
 
     // 更新処理
     void Update()
     {
-        if(totalDistance.TotalDistance >= num && arrayNumber < arrayLength)
+        if(totalDistance.TotalDistance >= nextCreateDistance && arrayNumber < pathNumber)
         {
-            num += number;
+            nextCreateDistance += pathInterval;
             path[arrayNumber] = transform.position;
             arrayNumber++;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            PathEnd();
         }
     }
 
     public void PathAdd(Vector3 position)
     {
-        if(arrayNumber >= arrayLength)
+        if(arrayNumber > pathNumber)
         {
             path[arrayNumber] = position;
             arrayNumber++;
@@ -95,11 +90,11 @@ public class CreatePath : MonoBehaviour
 
     public void PathEnd()
     {
-        if(arrayNumber < arrayLength)
+        if(arrayNumber < pathNumber)
         {
-            for(int i = arrayNumber; i < arrayLength; i++)
+            for(int i = arrayNumber; i < pathNumber; i++)
             {
-                path[i] = path[arrayNumber - 1];
+                path[i] = transform.position;
             }
         }
     }

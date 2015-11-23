@@ -47,9 +47,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 471766}
-  m_Layer: 0
+  - 58: {fileID: 5842652}
+  m_Layer: 10
   m_Name: Ivy
-  m_TagString: Ivy
+  m_TagString: Seed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,6 +93,19 @@ Transform:
   - {fileID: 444128}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!58 &5842652
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163088}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!114 &11401774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,13 +172,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162722}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 159b7a9aa45848b4085fe71371273747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  number: 2
-  arrayLength: 26
+  pathInterval: 2
+  pathNumber: 26
   path: []
 --- !u!114 &11456740
 MonoBehaviour:
@@ -1306,6 +1320,30 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: erase
       value: .00100000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: pathInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: pathNumber
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Seed
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -143,7 +143,7 @@ GameObject:
   - 61: {fileID: 127524166}
   m_Layer: 8
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -354,6 +354,21 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 150466, guid: 17ebcfb7ebb58e6468f3c3cd7b6b6052, type: 2}
   m_PrefabInternal: {fileID: 41700626}
+--- !u!114 &731619346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 731619341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcc1588ad8e5d9409bd77b4616f0d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAwakeHitUpdate: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1169717959
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +452,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1337500955}
   - 114: {fileID: 1337500954}
+  - 114: {fileID: 1337500956}
   m_Layer: 0
   m_Name: SeedManager
   m_TagString: Untagged
@@ -460,7 +476,7 @@ MonoBehaviour:
   IvyObject: {fileID: 163088, guid: 5362eed87525a304e9c9973bc90b51fe, type: 2}
   WaterGunObject: {fileID: 0}
   BubbleObject: {fileID: 0}
-  BambooObject: {fileID: 0}
+  BambooObject: {fileID: 105930, guid: 77432e2b0f1c30742bd3b9987d710400, type: 2}
 --- !u!4 &1337500955
 Transform:
   m_ObjectHideFlags: 0
@@ -473,6 +489,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &1337500956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1337500953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcc1588ad8e5d9409bd77b4616f0d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAwakeHitUpdate: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 1792
 --- !u!1001 &1516040104
 Prefab:
   m_ObjectHideFlags: 0
@@ -584,7 +615,7 @@ GameObject:
   - 61: {fileID: 1727399345}
   m_Layer: 8
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

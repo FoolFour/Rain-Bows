@@ -22,10 +22,10 @@ public class DrawPath : MonoBehaviour
     [SerializeField, Tooltip("パスの移動が完了する時間")]
     private float time;
 
-    GameObject dotParticle;
+    private GameObject dotParticle;
     private CreatePath createPath;
     private Hashtable  hashTable = new Hashtable();
-    TrailRendererWith2DCollider trail;
+    private TrailRendererWith2DCollider trail;
 
     #endregion
 
@@ -68,9 +68,12 @@ public class DrawPath : MonoBehaviour
         hashTable.Add("path", createPath.Path);
         hashTable.Add("time", time);
         hashTable.Add("easetype", iTween.EaseType.easeOutSine);
+        hashTable.Add("oncompletetarget", gameObject);
+        hashTable.Add("oncomplete", "Complete");
+
         iTween.MoveTo(gameObject, hashTable);
+
         StartCoroutine(Reset());
-        StartCoroutine(Complete());
     }
 
     IEnumerator Reset()
@@ -79,9 +82,8 @@ public class DrawPath : MonoBehaviour
         trail.lifeTime = 30;
     }
 
-    IEnumerator Complete()
+    private void Complete()
     {
-        yield return new WaitForSeconds(time);
         trail.pausing = true;
         enabled = false;
     }
