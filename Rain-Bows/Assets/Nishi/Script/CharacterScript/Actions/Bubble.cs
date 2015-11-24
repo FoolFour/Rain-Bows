@@ -5,7 +5,7 @@ public class Bubble : ICharaState {
 
     public void Start()
     {
-        gameObject.GetComponent<Rigidbody2D>().Sleep();
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         gameObject.transform.SetParent(m_HitObject.transform,false);
     }
 
@@ -13,7 +13,7 @@ public class Bubble : ICharaState {
     {
         if (gameObject.transform.parent == null)
         {
-            gameObject.GetComponent<Rigidbody2D>().WakeUp();
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
             m_next = StateName.Default;
             m_isDead = true;
         }

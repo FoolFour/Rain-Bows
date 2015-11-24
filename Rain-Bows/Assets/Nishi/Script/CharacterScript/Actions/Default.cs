@@ -27,6 +27,22 @@ public class Default : ICharaState
             gameObject.transform.rotation = hit.gameObject.transform.rotation;
         }
 
+        if(transform.parent != null)
+        {
+            if (transform.parent.tag == "Bubble")
+            {
+                HitSend(transform.parent.gameObject);
+                m_next = StateName.Bubble;
+                m_isDead = true;
+            }
+            if (transform.parent.tag == "Water")
+            {
+                HitSend(transform.parent.gameObject);
+                m_next = StateName.Water;
+                m_isDead = true;
+            }
+        }
+
     }
 
     public override bool IsDead()
@@ -46,18 +62,18 @@ public class Default : ICharaState
             m_dir *= -1;
         }
 
-        if (collision.gameObject.tag == "Bubble")
-        {
-            HitSend(collision.gameObject);
-            m_next = StateName.Bubble;
-            m_isDead = true;
-        }
-        if (collision.gameObject.tag == "Water")
-        {
-            HitSend(collision.gameObject);
-            m_next = StateName.Water;
-            m_isDead = true;
-        }
+        //if (collision.gameObject.tag == "Bubble")
+        //{
+        //    HitSend(collision.gameObject);
+        //    m_next = StateName.Bubble;
+        //    m_isDead = true;
+        //}
+        //if (collision.gameObject.tag == "Water")
+        //{
+        //    HitSend(collision.gameObject);
+        //    m_next = StateName.Water;
+        //    m_isDead = true;
+        //}
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -68,6 +84,18 @@ public class Default : ICharaState
             m_next = StateName.Rope;
             m_isDead = true;
         }
+        //if (other.tag == "Bubble")
+        //{
+        //    HitSend(other.gameObject);
+        //    m_next = StateName.Bubble;
+        //    m_isDead = true;
+        //}
+        //if (other.gameObject.tag == "Water")
+        //{
+        //    HitSend(other.gameObject);
+        //    m_next = StateName.Water;
+        //    m_isDead = true;
+        //}
     }
 
     bool IsGround()
