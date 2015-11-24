@@ -13,6 +13,7 @@ public class Default : ICharaState
         m_Animator = gameObject.GetComponent<Animator>();
         m_GroundCheck = gameObject.transform.GetChild(0);
         m_Ground = gameObject.transform.GetChild(1);
+        //
     }
 
     public void Update()
