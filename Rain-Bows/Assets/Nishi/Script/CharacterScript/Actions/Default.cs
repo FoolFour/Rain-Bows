@@ -50,6 +50,10 @@ public class Default : ICharaState
         {
             m_dir *= -1;
         }
+        if (collision.gameObject.tag == "Player")
+        {
+            m_dir *= -1;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
