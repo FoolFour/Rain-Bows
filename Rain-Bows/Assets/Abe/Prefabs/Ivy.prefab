@@ -32,6 +32,7 @@ GameObject:
   - 114: {fileID: 11474148}
   - 114: {fileID: 11437062}
   - 114: {fileID: 11410916}
+  - 114: {fileID: 11413926}
   m_Layer: 0
   m_Name: DotDrawer
   m_TagString: Ivy
@@ -101,7 +102,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 163088}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -166,6 +167,17 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &11413926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d002377d45009d4cbc80d6f249a3006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11437062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,6 +192,7 @@ MonoBehaviour:
   pathInterval: 2
   pathNumber: 26
   path: []
+  normal: []
 --- !u!114 &11456740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1344,6 +1357,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

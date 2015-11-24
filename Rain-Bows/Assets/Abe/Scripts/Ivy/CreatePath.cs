@@ -11,6 +11,7 @@
 // ----- ----- ----- ----- -----
 
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -26,7 +27,8 @@ public class CreatePath : MonoBehaviour
     [SerializeField, Tooltip("")]
     private int pathNumber;
 
-    private MouseTotalDistance totalDistance;
+    private MouseTotalDistance    totalDistance;
+    private MousePreviousPosition mousePreviousPosition;
 
     private float nextCreateDistance;
     private int arrayNumber;
@@ -34,20 +36,23 @@ public class CreatePath : MonoBehaviour
     [SerializeField]
     private Vector3[] path;
 
-    public Vector3[] Path
-    {
-        get
-        {
-            return path;
-        }
-    }
+    [SerializeField]
+    private Vector3[] normal;
 
     #endregion
 
 
     #region プロパティ
 
+    public Vector3[] Path
+    {
+        get{ return path; }
+    }
 
+    public Vector3[] Normal
+    {
+        get{ return normal; }
+    }
 
     #endregion
 
@@ -57,7 +62,8 @@ public class CreatePath : MonoBehaviour
     // 初期化処理
     void Awake()
     {
-        totalDistance = GetComponent<MouseTotalDistance>();
+        totalDistance         = GetComponent<MouseTotalDistance   >();
+        mousePreviousPosition = GetComponent<MousePreviousPosition>();
         path = new Vector3[pathNumber];
     }
 
@@ -73,17 +79,13 @@ public class CreatePath : MonoBehaviour
     {
         if(totalDistance.TotalDistance >= nextCreateDistance && arrayNumber < pathNumber)
         {
+            //一定長さで記録をとれるように
             nextCreateDistance += pathInterval;
-            path[arrayNumber] = transform.position;
-            arrayNumber++;
-        }
-    }
 
-    public void PathAdd(Vector3 position)
-    {
-        if(arrayNumber > pathNumber)
-        {
-            path[arrayNumber] = position;
+            path  [arrayNumber] = transform.position;
+
+            //法線は葉っぱ、ルートを作る時に必要
+            normal[arrayNumber] = mousePreviousPosition.Normal;
             arrayNumber++;
         }
     }
@@ -94,9 +96,44 @@ public class CreatePath : MonoBehaviour
         {
             for(int i = arrayNumber; i < pathNumber; i++)
             {
+                normal[i] = Vector3.zero;
                 path[i] = transform.position;
             }
         }
+    }
+
+    public void GetRoute(Vector2 colPoint)
+    {
+        int index = GetNearPointIndex(colPoint);
+
+        int arrayLength = path.Length - index + 1;
+
+
+    }
+
+    private int GetNearPointIndex(Vector2 colPoint)
+    {
+        float? minLength = null;
+        int index = 0;
+
+        for(int i = 0; i < path.Length; i++)
+        {
+            float length;
+            length = VectorUtility.DistanceSquare(path[i].xy(), colPoint);
+
+            if(!minLength.HasValue || minLength.Value > length)
+            {
+                minLength = length;
+                continue;
+            }
+
+            if(minLength.Value <= length)
+            {
+                index = i - 1;
+                break;
+            }
+        }
+        return index;
     }
 	#endregion
 }
