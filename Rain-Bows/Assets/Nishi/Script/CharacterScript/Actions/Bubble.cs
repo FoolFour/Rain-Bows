@@ -5,12 +5,9 @@ public class Bubble : ICharaState {
 
     public void Start()
     {
-<<<<<<< HEAD
+
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        gameObject.GetComponent<Rigidbody2D>().Sleep();
-=======
         gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
->>>>>>> Tunomizu
         gameObject.transform.SetParent(m_HitObject.transform,false);
     }
 
@@ -18,12 +15,8 @@ public class Bubble : ICharaState {
     {
         if (gameObject.transform.parent == null)
         {
-<<<<<<< HEAD
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
-            gameObject.GetComponent<Rigidbody2D>().WakeUp();
-=======
             gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
->>>>>>> Tunomizu
             m_next = StateName.Default;
             m_isDead = true;
         }
