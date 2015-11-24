@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour {
     float comma = 0;
 	void Start () 
     {
+
 	}
 	
 	// Update is called once per frame

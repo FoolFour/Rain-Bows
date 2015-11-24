@@ -9,20 +9,15 @@ public class Default : ICharaState
 
     public void Start()
     {
-        m_Rigid =gameObject.GetComponent<Rigidbody2D>();
-        m_Animator = gameObject.GetComponent<Animator>();
         m_GroundCheck = gameObject.transform.GetChild(0);
         m_Ground = gameObject.transform.GetChild(1);
     }
 
     public void Update()
     {
-        AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
-        if (IsGround() && !stateInfo.IsName("CharacterDance"))
+        if (IsGround())
         {
-            Vector3 newVelocity = Vector3.zero;
-            newVelocity.x = 0.1f * m_dir;
-            gameObject.transform.position += newVelocity;
+            gameObject.transform.position += new Vector3(0.1f, 0.0f, 0.0f) * m_dir;
         }
 
         int layerMask = LayerMask.GetMask(new string[] { "Ground" });
@@ -30,6 +25,22 @@ public class Default : ICharaState
         if(hit != null)
         {
             gameObject.transform.rotation = hit.gameObject.transform.rotation;
+        }
+
+        if(transform.parent != null)
+        {
+            if (transform.parent.tag == "Bubble")
+            {
+                HitSend(transform.parent.gameObject);
+                m_next = StateName.Bubble;
+                m_isDead = true;
+            }
+            if (transform.parent.tag == "Water")
+            {
+                HitSend(transform.parent.gameObject);
+                m_next = StateName.Water;
+                m_isDead = true;
+            }
         }
 
     }
@@ -50,10 +61,19 @@ public class Default : ICharaState
         {
             m_dir *= -1;
         }
-        if (collision.gameObject.tag == "Player")
-        {
-            m_dir *= -1;
-        }
+
+        //if (collision.gameObject.tag == "Bubble")
+        //{
+        //    HitSend(collision.gameObject);
+        //    m_next = StateName.Bubble;
+        //    m_isDead = true;
+        //}
+        //if (collision.gameObject.tag == "Water")
+        //{
+        //    HitSend(collision.gameObject);
+        //    m_next = StateName.Water;
+        //    m_isDead = true;
+        //}
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -64,22 +84,18 @@ public class Default : ICharaState
             m_next = StateName.Rope;
             m_isDead = true;
         }
-        if (other.tag == "Bubble")
-        {
-            HitSend(other.gameObject);
-            m_next = StateName.Bubble;
-            m_isDead = true;
-        }
-        if (other.gameObject.tag == "Water")
-        {
-            HitSend(other.gameObject);
-            m_next = StateName.Water;
-            m_isDead = true;
-        }
-        if (other.gameObject.tag == "Seed")
-        {
-            m_Animator.SetTrigger("hitSeed");
-        }
+        //if (other.tag == "Bubble")
+        //{
+        //    HitSend(other.gameObject);
+        //    m_next = StateName.Bubble;
+        //    m_isDead = true;
+        //}
+        //if (other.gameObject.tag == "Water")
+        //{
+        //    HitSend(other.gameObject);
+        //    m_next = StateName.Water;
+        //    m_isDead = true;
+        //}
     }
 
     bool IsGround()

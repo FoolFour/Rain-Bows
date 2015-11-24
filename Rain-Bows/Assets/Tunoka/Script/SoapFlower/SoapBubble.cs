@@ -21,11 +21,14 @@ public class SoapBubble : MonoBehaviour {
      
     }
     private void OnTriggerStay2D(Collider2D col)
-    {   //子に何かがいたら吐き出す
-        if (transform.childCount != 0)
+    {
+        if (col.gameObject.CompareTag("Player"))
         {
-            transform.DetachChildren();
+            return;
         }
+
+        //子に何かがいたら吐き出す
+        transform.DetachChildren();
         Destroy(gameObject);
     }
 }

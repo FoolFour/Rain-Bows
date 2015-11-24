@@ -14,16 +14,14 @@ public class SoapFlower : MonoBehaviour {
 
 
     float time;
-	// Use this for initialization
-	void Start () {
-        
-	}
+
 	
 	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
-        DestroyTime -= Time.deltaTime;
+        DestroyTime -= Time.deltaTime;//枯れるまでの時間
 
+        //Wither();//枯らせる
         if (time >= SoapBubbleInterval)
         {
             time = 0;
@@ -33,4 +31,11 @@ public class SoapFlower : MonoBehaviour {
             soapBubble.transform.Rotate(0, 0, slope * 45);//シャボンの方向返還
         }
 	}
+
+    void Wither()
+    {
+        //種に戻す
+        //
+        Destroy(transform.root.gameObject);
+    }
 }
