@@ -15,7 +15,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [AddComponentMenu("MyScript/DrawPath")]
-public class DrawPath : MonoBehaviour, ISeed
+public class DrawPath : ISeed
 {
 	#region 変数
 
@@ -64,7 +64,7 @@ public class DrawPath : MonoBehaviour, ISeed
 #endif
     }
 
-    public void OnGrow()
+    public override void OnGrow()
     {
         transform.position = createPath.Path[0];
         hashTable.Add("path", createPath.Path);

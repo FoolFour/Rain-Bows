@@ -15,8 +15,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 [AddComponentMenu("MyScript/ISeed")]
-public interface ISeed
+public abstract class ISeed : MonoBehaviour
 {
     //成長
-    void OnGrow();
+    public abstract void OnGrow();
 }
