@@ -127,7 +127,6 @@ public class DrawDotLine : MonoBehaviour
         {
             //クリックしたときに当たっているオブジェクトで判定しないように
             mouseChase.enabled = false;
-            createPath.PathAdd(mouseRay.HitInfo.point);
             return;
         }
 

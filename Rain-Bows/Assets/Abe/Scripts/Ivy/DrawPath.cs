@@ -15,7 +15,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [AddComponentMenu("MyScript/DrawPath")]
-public class DrawPath : MonoBehaviour
+public class DrawPath : MonoBehaviour, ISeed
 {
 	#region 変数
 
@@ -56,13 +56,15 @@ public class DrawPath : MonoBehaviour
     // 更新処理
     void Update()
     {
+#if UNITY_EDITOR
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            OnDraw();
+            OnGrow();
         }
+#endif
     }
 
-    public void OnDraw()
+    public void OnGrow()
     {
         transform.position = createPath.Path[0];
         hashTable.Add("path", createPath.Path);
