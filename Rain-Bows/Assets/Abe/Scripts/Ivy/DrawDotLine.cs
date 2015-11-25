@@ -108,6 +108,7 @@ public class DrawDotLine : MonoBehaviour
         this.enabled               = false;
 
         createPath.PathEnd();
+        EraseDot();
     }
 
     void LimitTotalDistance()
