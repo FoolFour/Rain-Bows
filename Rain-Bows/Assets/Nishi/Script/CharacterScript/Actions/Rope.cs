@@ -3,12 +3,14 @@ using System.Collections;
 
 public class Rope : ICharaState {
 
+    GameObject dotDrawer;
+
     public void Start()
     {
-        gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
 
-        GameObject gameObj = m_HitObject.transform.parent.FindChild("DotDrawer").gameObject;
-        Vector3[] path = gameObj.GetComponent<CreatePath>().Path;
+        dotDrawer = m_HitObject.transform.parent.FindChild("DotDrawer").gameObject;
+        Vector3[] path = dotDrawer.GetComponent<CreatePath>().Path;
         Hashtable hash = new Hashtable();
         hash.Add("time", 5.0f);
         hash.Add("easeType", iTween.EaseType.linear);
@@ -45,6 +47,10 @@ public class Rope : ICharaState {
 
     public void ChageState()
     {
+        Vector3[] normal = dotDrawer.GetComponent<CreatePath>().Normal;
+        Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        rigidbody.isKinematic = false;
+        rigidbody.AddForce(normal[normal.Length-1].xy(), ForceMode2D.Impulse);
         m_next = StateName.Default;
         m_isDead = true;
     }

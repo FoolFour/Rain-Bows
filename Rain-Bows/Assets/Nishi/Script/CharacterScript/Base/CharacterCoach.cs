@@ -21,6 +21,7 @@ public class CharacterCoach : MonoBehaviour {
 	void Update () {
 
         StateChange();
+        
 	
 	}
 
@@ -33,5 +34,10 @@ public class CharacterCoach : MonoBehaviour {
             m_CurrentState = (ICharaState)gameObject.AddComponent(m_states[m_CurrentState.Next()]);
             m_CurrentState.HitSend(temp);
         }
+    }
+
+    public int GetDir()
+    {
+        return gameObject.GetComponent<ICharaState>().m_dir;
     }
 }
