@@ -65,6 +65,7 @@ public class CreatePath : MonoBehaviour
         totalDistance         = GetComponent<MouseTotalDistance   >();
         mousePreviousPosition = GetComponent<MousePreviousPosition>();
         path = new Vector3[pathNumber];
+        normal = new Vector3[pathNumber];
     }
 
     // 更新前処理
@@ -108,7 +109,7 @@ public class CreatePath : MonoBehaviour
 
         int arrayLength = path.Length - index + 1;
 
-
+        Vector3 n = normal[index];
     }
 
     private int GetNearPointIndex(Vector2 colPoint)
