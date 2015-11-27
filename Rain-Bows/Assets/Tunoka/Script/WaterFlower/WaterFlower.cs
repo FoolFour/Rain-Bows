@@ -61,7 +61,6 @@ public class WaterFlower : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("Player") && transform.childCount == 2)
         {
-
             col.transform.parent = transform;
             col.transform.localPosition = Vector3.zero;
             PlayerBullet = col.transform.gameObject;
