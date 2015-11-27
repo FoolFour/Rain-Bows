@@ -289,7 +289,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
 --- !u!1 &524665685
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,8 +622,8 @@ MonoBehaviour:
   mousePointer: {fileID: 731619341}
   seedKind: 0
   IvyObject: {fileID: 163088, guid: 5362eed87525a304e9c9973bc90b51fe, type: 2}
-  WaterGunObject: {fileID: 0}
-  BubbleObject: {fileID: 0}
+  WaterGunObject: {fileID: 108194, guid: bdaa0235f1fc62a429d0a9152fac08e4, type: 2}
+  BubbleObject: {fileID: 185060, guid: 488d238133eb7ab45ab6b3fd9ae43564, type: 2}
   BambooObject: {fileID: 105930, guid: 77432e2b0f1c30742bd3b9987d710400, type: 2}
 --- !u!4 &1337500955
 Transform:
