@@ -19,8 +19,7 @@ using System.Collections.Generic;
 [AddComponentMenu("MyScript/CreatePath")]
 public class CreatePath : MonoBehaviour
 {
-	#region 変数
-
+    #region 変数
     [SerializeField, Tooltip("説明文")]
     private int pathInterval;
 
