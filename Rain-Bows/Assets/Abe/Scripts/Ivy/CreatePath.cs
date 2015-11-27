@@ -125,13 +125,13 @@ public class CreatePath : MonoBehaviour
 
         if(dSign == nSign)
         {
-            Array.Copy(path, index + 1, array, path.Length, path.Length - index + 1);
+            Array.Copy( path, index + 1, array, path.Length, path.Length - index + 1);
         }
         else
         {
-            var path_ = path;
+            Vector3[] path_ = path;
             Array.Reverse(path_);
-            
+            Array.Copy(path_, index + 1, array, path.Length, path.Length - index + 1);
         }
     }
 
