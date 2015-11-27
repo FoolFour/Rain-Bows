@@ -19,8 +19,7 @@ using System.Collections.Generic;
 [AddComponentMenu("MyScript/CreatePath")]
 public class CreatePath : MonoBehaviour
 {
-	#region 変数
-
+    #region 変数
     [SerializeField, Tooltip("説明文")]
     private int pathInterval;
 
@@ -64,7 +63,7 @@ public class CreatePath : MonoBehaviour
     {
         totalDistance         = GetComponent<MouseTotalDistance   >();
         mousePreviousPosition = GetComponent<MousePreviousPosition>();
-        path = new Vector3[pathNumber];
+        path   = new Vector3[pathNumber];
         normal = new Vector3[pathNumber];
     }
 
@@ -72,7 +71,7 @@ public class CreatePath : MonoBehaviour
     void Start()
     {
         nextCreateDistance = 0;
-        arrayNumber = 0;
+        arrayNumber        = 0;
     }
 
     // 更新処理
@@ -98,30 +97,57 @@ public class CreatePath : MonoBehaviour
             for(int i = arrayNumber; i < pathNumber; i++)
             {
                 normal[i] = Vector3.zero;
-                path[i] = transform.position;
+                path[i]   = transform.position;
             }
         }
     }
 
-    public void GetRoute(Vector2 colPoint)
+    public void GetRoute(Vector2 colPoint, int direction)
     {
         int index = GetNearPointIndex(colPoint);
 
         int arrayLength = path.Length - index + 1;
 
         Vector3 n = normal[index];
+
+        //符号をみて符号が
+        //
+        //・合致していれば順番に
+        //・合致しなければ逆順に
+        //
+        //パスを取っていく
+
+        float nSign = Mathf.Sign(n.x);
+        float dSign = Mathf.Sign(direction);
+        
+        Vector3[] array = new Vector3[path.Length - index + 1];
+
+        if(dSign == nSign)
+        {
+            Array.Copy( path, index + 1, array, path.Length, path.Length - index + 1);
+        }
+        else
+        {
+            Vector3[] path_ = path;
+            Array.Reverse(path_);
+            Array.Copy(path_, index + 1, array, path.Length, path.Length - index + 1);
+        }
     }
 
     private int GetNearPointIndex(Vector2 colPoint)
     {
+        //if文でnullかどうかを判断するため
         float? minLength = null;
-        int index = 0;
+
+        //breakを通らなかったとき末尾がcolPointに一番近いため
+        int    index     = path.Length - 1;
 
         for(int i = 0; i < path.Length; i++)
         {
             float length;
-            length = VectorUtility.DistanceSquare(path[i].xy(), colPoint);
+            length = VectorUtility.DistanceSquare(path[i].xy(), colPoint); //比較のみ
 
+            //nullかどうかを先に見てエラー回避
             if(!minLength.HasValue || minLength.Value > length)
             {
                 minLength = length;
@@ -130,10 +156,13 @@ public class CreatePath : MonoBehaviour
 
             if(minLength.Value <= length)
             {
+                //minLengthは1つ前のパスの情報になるので
+                //i - 1を返す
                 index = i - 1;
                 break;
             }
         }
+        
         return index;
     }
 	#endregion
