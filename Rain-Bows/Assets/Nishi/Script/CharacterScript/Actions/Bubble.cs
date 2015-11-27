@@ -8,7 +8,7 @@ public class Bubble : ICharaState {
 
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-        gameObject.transform.SetParent(m_HitObject.transform,false);
+        //gameObject.transform.SetParent(m_HitObject.transform,false);
     }
 
     public void Update()
