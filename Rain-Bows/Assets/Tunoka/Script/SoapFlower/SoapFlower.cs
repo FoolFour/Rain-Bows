@@ -21,7 +21,9 @@ public class SoapFlower : MonoBehaviour {
         time += Time.deltaTime;
         DestroyTime -= Time.deltaTime;//枯れるまでの時間
 
-        //Wither();//枯らせる
+        if (DestroyTime <= 0){ 
+            Wither();//枯らせる
+        }
         if (time >= SoapBubbleInterval)
         {
             time = 0;

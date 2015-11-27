@@ -4,7 +4,7 @@ using System.Collections;
 public class WaterFlower : MonoBehaviour {
 
 
-    private Vector3 rotPos = new Vector3 (5,5,0);
+    public Vector3 rotPos = new Vector3 (5,5,0);
 
     [SerializeField]
     private GameObject Water;
