@@ -7,6 +7,8 @@ public class Default : ICharaState
     private Transform m_GroundCheck;
     private Transform m_Ground;
 
+    public bool m_NowDance = false;
+
     public void Start()
     {
         m_Rigid =gameObject.GetComponent<Rigidbody2D>();
@@ -23,6 +25,11 @@ public class Default : ICharaState
             Vector3 newVelocity = Vector3.zero;
             newVelocity.x = 0.1f * m_dir;
             gameObject.transform.position += newVelocity;
+            m_NowDance = false;
+        }
+        else
+        {
+            m_NowDance = true;
         }
 
         int layerMask = LayerMask.GetMask(new string[] { "Ground" });
@@ -52,6 +59,7 @@ public class Default : ICharaState
         }
         if (collision.gameObject.tag == "Player")
         {
+            gameObject.transform.position += new Vector3(0.1f, 0, 0) * -m_dir;
             m_dir *= -1;
         }
     }
