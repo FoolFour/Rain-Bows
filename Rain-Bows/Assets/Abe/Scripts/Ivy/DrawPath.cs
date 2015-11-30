@@ -76,6 +76,7 @@ public class DrawPath : ISeed
         iTween.MoveTo(gameObject, hashTable);
 
         StartCoroutine(Reset());
+        dotParticle.GetComponent<DrawDotLine>().EraseDot();
     }
 
     IEnumerator Reset()
