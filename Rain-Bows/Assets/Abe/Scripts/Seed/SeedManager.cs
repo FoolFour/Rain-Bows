@@ -82,6 +82,7 @@ public class SeedManager : MonoBehaviour
             {
                 if(mouseRay.HitInfo.collider.tag == "Seed")
                 {
+                    mouseRay.HitInfo.collider.GetComponent<Seed>();
                     Destroy(mouseRay.HitInfo.collider.gameObject);
                 }
                 else if(mouseRay.HitInfo.collider.tag == "Ground")

@@ -24,14 +24,14 @@ public class DrawDotLine : MonoBehaviour
     [SerializeField, Tooltip("消える時の時間"),Range(0, 1)]
     private float erase;
 
-    private ParticleSystem     particleSystem;
+    private new ParticleSystem     particleSystem;
 
-    private MouseChase         mouseChase;
-    private MouseTotalDistance mouseTotalDistance;
-    private CreatePath         createPath;
-    private MouseLineCast      mouseRay;
+    private     MouseChase         mouseChase;
+    private     MouseTotalDistance mouseTotalDistance;
+    private     CreatePath         createPath;
+    private     MouseLineCast      mouseRay;
 
-    private bool        hit;   
+    private bool hit;
     
 
     #endregion

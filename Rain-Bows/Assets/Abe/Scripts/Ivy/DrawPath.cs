@@ -13,6 +13,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 [AddComponentMenu("MyScript/DrawPath")]
 public class DrawPath : ISeed
@@ -90,5 +91,10 @@ public class DrawPath : ISeed
         trail.pausing = true;
         enabled = false;
     }
-	#endregion
+
+    public override void OnDestroy()
+    {
+        throw new NotImplementedException();
+    }
+    #endregion
 }

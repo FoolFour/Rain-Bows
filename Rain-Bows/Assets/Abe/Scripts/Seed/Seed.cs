@@ -23,5 +23,6 @@ public class Seed : MonoBehaviour
     public void OnGrow()
     {
         SeedGrowObject.GetComponent<ISeed>().OnGrow();
+
     }
 }

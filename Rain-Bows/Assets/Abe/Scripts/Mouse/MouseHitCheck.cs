@@ -37,7 +37,7 @@ public abstract class MouseHitCheck : MonoBehaviour
         get{ return hitInfo.collider; }
     }
 
-    public Collider2D collider2D
+    public new Collider2D collider2D
     {
         get
         {

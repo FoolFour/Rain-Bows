@@ -19,4 +19,5 @@ public abstract class ISeed : MonoBehaviour
 {
     //成長
     public abstract void OnGrow();
+    public abstract void OnDestroy();
 }
